@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>test longpolling</title>
+    <script type="text/javascript" src="./js/jquery-2.2.1.min.js"></script>
+</head>
+<body>
+    <input id="sendTo" type="text" /> <button onclick="send();">send</button>
+</body>
+</html>
+<script type="text/javascript">
+var TYPE_CONNECT = 0;
+var TYPE_SEND = 1;
+
+var longpolling = {};
+var queue = [];
+
+$(document).ready(function(){
+    queryStatus();
+});  
+
+function queryStatus() {
+     $.getJSON("http://192.168.70.41:9080/user_status?user_ids=1,2,3&callback=?", {}, function(json){
+        console.log(json);
+    });
+}
+
+function ws() {
+    var sid = ""
+
+    ws = new WebSocket("ws://127.0.0.1:9001/ws");
+
+    ws.onopen = function() {
+        console.log('Connected')
+    };
+
+    ws.onmessage = function(evt) {
+        console.log(evt.data);
+
+        if (sid === "") {
+            sid = JSON.parse(evt.data).sid
+            ws.send(JSON.stringify({
+                "sid" : sid,
+                "value": [{"name":"asd"}],
+            }));
+        } 
+    };
+
+    // setInterval(function() {
+    //   ws.send('Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!Hello, Server!');
+    // }, 1000);
+}
+
+function connect() {
+    $.getJSON("http://127.0.0.1:9001/connect?callback=?", longpolling, function(json){
+        if (longpolling["err"]) {
+            console.log("error:" + longpolling["err"]);
+            return;
+        };
+        
+        if (!longpolling["sid"]) {
+            longpolling["sid"] = json.sid;
+        }
+
+        longpolling["vid"] = json.vid
+
+        console.log("connect: ");
+        console.log(json);
+
+        connect();
+    });
+}  
+
+function send() {
+    doSend($("#sendTo").val())
+}
+
+function doSend(msg) {
+    data = {
+        "sid" : longpolling.sid,
+        "data": msg
+    }
+
+    $.getJSON("http://127.0.0.1:9091/send?callback=?", data, function(json){
+        console.log("send: ");
+        console.log(json);
+    });
+}
+</script>

@@ -1,0 +1,17 @@
+package protocol;
+
+// 协议格式：
+// head + body
+
+message MessageHead
+{
+    required int32  bizId           = 1; // 业务id
+    required int32  cmd             = 2; // 业务指令
+    required int32  protocolVersion = 3; // 服务端协议版本
+    required int32  cliVersion      = 4; // 客户端版本
+    required int64  cliSeqId        = 5; // 客户端包序列号，客户端严格递增
+    optional string sessionId       = 6; // 当前链接的sessionId，在服务端生成，并且在回执消息中传递给客户端
+    optional int64  sessionSeqId    = 7; // 当前session中，消息的序列号，服务器生成，并且会传递给客户端
+    optional string msgId           = 8; // 消息唯一ID，由服务端生成。并且在回执消息中传递给客户端
+    optional string ip              = 9; // 客户端ip
+}
