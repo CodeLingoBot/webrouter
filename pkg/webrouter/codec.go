@@ -4,7 +4,7 @@ import (
 	"bytes"
 	"encoding/json"
 	"github.com/CodisLabs/codis/pkg/utils/log"
-	"github.com/fagongzi/net"
+	"github.com/morya/net"
 	"github.com/funny/link"
 	"io"
 )

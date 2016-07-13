@@ -2,7 +2,7 @@ package router
 
 import (
 	"errors"
-	"github.com/fagongzi/im/pkg/protocol"
+	"github.com/morya/im/pkg/protocol"
 	"sync"
 )
 

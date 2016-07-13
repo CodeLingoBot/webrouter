@@ -1,7 +1,7 @@
 package router
 
 import (
-	_ "github.com/fagongzi/im/pkg/protocol"
+	_ "github.com/morya/im/pkg/protocol"
 )
 
 const (

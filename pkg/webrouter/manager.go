@@ -4,7 +4,7 @@ import (
 	"errors"
 	"github.com/CodisLabs/codis/pkg/utils/atomic2"
 	"github.com/CodisLabs/codis/pkg/utils/log"
-	"github.com/fagongzi/net"
+	"github.com/morya/net"
 	ws "golang.org/x/net/websocket"
 	"strconv"
 	"strings"
