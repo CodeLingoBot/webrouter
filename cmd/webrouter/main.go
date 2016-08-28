@@ -5,13 +5,13 @@ package main
 
 import (
 	"flag"
-	clog "github.com/CodisLabs/codis/pkg/utils/log"
-    "github.com/morya/im/pkg/log"
-    "github.com/moyra/im/pkg/log"
-    w "github.com/morya/im/pkg/webrouter"
 	"runtime"
 	"strings"
 	"time"
+
+	clog "github.com/CodisLabs/codis/pkg/utils/log"
+	"github.com/morya/webrouter/pkg/log"
+	w "github.com/morya/webrouter/pkg/webrouter"
 )
 
 var (

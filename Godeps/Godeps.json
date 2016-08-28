@@ -1,5 +1,5 @@
 {
-	"ImportPath": "github.com/fagongzi/im",
+	"ImportPath": "github.com/morya/webrouter",
 	"GoVersion": "go1.5",
 	"Packages": [
 		"./..."

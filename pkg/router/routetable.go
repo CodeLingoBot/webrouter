@@ -2,8 +2,9 @@ package router
 
 import (
 	"errors"
-	"github.com/morya/im/pkg/protocol"
 	"sync"
+
+	"github.com/morya/webrouter/pkg/protocol"
 )
 
 var (

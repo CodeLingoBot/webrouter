@@ -1,7 +1,7 @@
 package router
 
 import (
-	_ "github.com/morya/im/pkg/protocol"
+	_ "github.com/morya/webrouter/pkg/protocol"
 )
 
 const (

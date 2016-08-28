@@ -3,13 +3,14 @@ package webrouter
 import (
 	"container/list"
 	"fmt"
-	"github.com/CodisLabs/codis/pkg/utils/atomic2"
-	"github.com/CodisLabs/codis/pkg/utils/log"
-	"github.com/morya/im/pkg/util"
-	"github.com/morya/net"
-	ws "golang.org/x/net/websocket"
 	"sync"
 	"time"
+
+	"github.com/CodisLabs/codis/pkg/utils/atomic2"
+	"github.com/CodisLabs/codis/pkg/utils/log"
+	"github.com/morya/net"
+	"github.com/morya/webrouter/pkg/util"
+	ws "golang.org/x/net/websocket"
 )
 
 const (
