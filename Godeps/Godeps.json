@@ -36,8 +36,7 @@
 			"Rev": "40bd0f3b4891a9d7f121bfb7b8e8b0525625e262"
 		},
 		{
-			"ImportPath": "github.com/fagongzi/net",
-			"Rev": "6634d2d9f9596f7156d0558c68fdc2ad0650ae59"
+			"ImportPath": "github.com/morya/net"
 		},
 		{
 			"ImportPath": "github.com/fgrid/uuid",
